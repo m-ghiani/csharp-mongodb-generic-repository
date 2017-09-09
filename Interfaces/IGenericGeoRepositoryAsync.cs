@@ -11,6 +11,6 @@ namespace GH.MongoDb.GenericRepository.Interfaces
         where TKey : IEquatable<TKey>
     {
         Task<long> Count(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, CancellationToken token);
-        Task<IEnumerable<T>> Get(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, CancellationToken token, int offset = 0, int limit = 0);
+        Task<IEnumerable<T>> Get(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, int? skip, int? limit, CancellationToken token);
     }
 }

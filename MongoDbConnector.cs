@@ -14,9 +14,9 @@ namespace GH.MongoDb.GenericRepository
 
         public List<GridFSBucket> Buckets { get; set; }
 
-        public bool HasBuckets => Buckets != null && Enumerable.Any<GridFSBucket>(Buckets);
+        public bool HasBuckets => Buckets != null && Buckets.Any<GridFSBucket>();
 
-        public bool HasBucket(string bucketName) => Buckets != null && Enumerable.Any<GridFSBucket>(Buckets, b => b.Options.BucketName == bucketName);
+        public bool HasBucket(string bucketName) => Buckets != null && Buckets.Any<GridFSBucket>(b => b.Options.BucketName == bucketName);
 
         public void Dispose() => GC.SuppressFinalize(this);
 
@@ -37,13 +37,13 @@ namespace GH.MongoDb.GenericRepository
 
         public GridFSBucket GetBucket(string bucketName)
         {
-            if (HasBuckets && HasBucket(bucketName)) return Enumerable.First<GridFSBucket>(Buckets, b => b.Options.BucketName == bucketName);
+            if (HasBuckets && HasBucket(bucketName)) return Buckets.First<GridFSBucket>(b => b.Options.BucketName == bucketName);
             if (!HasBuckets) Buckets = new List<GridFSBucket>();
             Buckets.Add(new GridFSBucket(Db, new GridFSBucketOptions()
             {
                 BucketName = bucketName
             }));
-            return Enumerable.First<GridFSBucket>(Buckets, b => b.Options.BucketName == bucketName);
+            return Buckets.First<GridFSBucket>(b => b.Options.BucketName == bucketName);
         }
 
     }

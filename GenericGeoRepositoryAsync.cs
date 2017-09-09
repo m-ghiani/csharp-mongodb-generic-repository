@@ -17,9 +17,7 @@ namespace GH.MongoDb.GenericRepository
         }
 
 
-
-
-        public async Task<IEnumerable<T>> Get(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, CancellationToken token, int offset = 0, int limit = 0)
+        public async Task<IEnumerable<T>> Get(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, int? skip, int? limit, CancellationToken token)
         {
             FilterDefinition<T> query = null;
             if (distance > 100 && distance < 50000)
@@ -29,7 +27,7 @@ namespace GH.MongoDb.GenericRepository
             }
             query = query != null ? query & filter : filter;
 
-            return await IMongoCollectionExtensions.Find(Collection, query).Skip(offset).Limit(limit).ToListAsync(token);
+            return await Collection.Find(query).Skip(skip).Limit(limit).ToListAsync(token);
 
         }
 

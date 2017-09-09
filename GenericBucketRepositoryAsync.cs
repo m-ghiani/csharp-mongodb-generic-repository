@@ -41,7 +41,7 @@ namespace GH.MongoDb.GenericRepository
                 Limit = 1,
                 Sort = sort
             };
-            return await IAsyncCursorExtensions.FirstAsync<GridFSFileInfo>(_bucket.Find(filter, options), token);
+            return await _bucket.Find(filter, options).FirstAsync<GridFSFileInfo>(token);
         }
         public async Task DeleteFile(ObjectId id, CancellationToken token)
         {
