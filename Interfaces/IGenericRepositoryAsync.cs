@@ -17,9 +17,11 @@ namespace GH.MongoDb.GenericRepository.Interfaces
         Task<bool> Exist(Expression<Func<T, bool>> filter, CancellationToken token);
         Task<bool> ExistCollection(CancellationToken token);
         Task<IEnumerable<T>> Get(CancellationToken token);
-        Task<IEnumerable<T>> Get(int offset, int limit, CancellationToken token);
+        Task<IEnumerable<T>> Get(int? skip, CancellationToken token);
+        Task<IEnumerable<T>> Get(int? skip, int? limit, CancellationToken token);
         Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, CancellationToken token);
-        Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, int offset, int limit, CancellationToken token);
+        Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, int? limit, CancellationToken token);
+        Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, int? skip, int? limit, CancellationToken token);
         Task<T> Get(TKey id, CancellationToken token);
         Task Update(T entity, CancellationToken token);
         Task Update(TKey id, T entitty, CancellationToken token);
