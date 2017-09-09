@@ -29,7 +29,7 @@ then you can use repository:
 
 ```
 var myConnector = new MongoDbConnector("localhost", "mydatabase")
-var myRepo = new People(myConnector)
+var myRepo = new PeopleRepositoryAsync(myConnector)
 
 myRepo.Get() //return all people in my collection 
 myRepo.Get(myID) //return person with myID as id
