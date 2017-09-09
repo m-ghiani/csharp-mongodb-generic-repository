@@ -1,12 +1,12 @@
+using GH.MongoDb.GenericRepository.Interfaces;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using GH.MongoDb.GenericRepository.Interfaces;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 
 namespace GH.MongoDb.GenericRepository
 {
@@ -42,7 +42,7 @@ namespace GH.MongoDb.GenericRepository
         public virtual async Task<bool> Exist(Expression<Func<T, bool>> filter, CancellationToken token) => await Collection.Find(filter).AnyAsync(token);
 
         public virtual async Task<bool> ExistCollection(CancellationToken token) => await Connector.Db.ListCollections(new ListCollectionsOptions() { Filter = new BsonDocument("name", CollectionName) }).AnyAsync(token);
-        public virtual async Task<IEnumerable<T>> Get(CancellationToken token) => await Get((int?) null, (int?)null, token);
+        public virtual async Task<IEnumerable<T>> Get(CancellationToken token) => await Get((int?) null, null, token);
         public virtual async Task<IEnumerable<T>> Get(int? skip, CancellationToken token) => await Get(skip, null, token);
         public virtual async Task<IEnumerable<T>> Get(int? skip, int? limit, CancellationToken token) => await Collection.Find(_ => true).Skip(skip).Limit(limit).ToListAsync(token);
         public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, CancellationToken token) => await Get(filter,null,null,token);
@@ -61,7 +61,7 @@ namespace GH.MongoDb.GenericRepository
 
         public virtual async Task Update(TKey id, string fieldName, object fieldValue, CancellationToken token)
         {
-            var filter = Builders<T>.Filter.Eq(_ => Object.Equals(_.Id, id), true);
+            var filter = Builders<T>.Filter.Eq(_ => Equals(_.Id, id), true);
             var update = Builders<T>.Update.Set(fieldName, fieldValue);
             await Collection.UpdateOneAsync(filter, update, cancellationToken: token);
         }

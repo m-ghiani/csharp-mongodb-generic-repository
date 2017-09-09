@@ -11,6 +11,8 @@
     <RepositoryType>Github</RepositoryType>
     <PackageTags>MongoDb, Repository pattern</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.1.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
