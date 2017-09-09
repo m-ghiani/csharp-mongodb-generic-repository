@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Description>Generic repository pattern for mongodb. This package contains abtract classes to implement generic repositori pattern</Description>
+    <Copyright />
+    <Authors>Massimo Ghiani</Authors>
+    <Company />
+    <Product>MongoDb Generic Repository</Product>
+    <RepositoryUrl>https://github.com/m-ghiani/csharp-mongodb-generic-repository</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
+    <PackageTags>MongoDb, Repository pattern</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
+    <PackageReference Include="MongoDB.Driver.GridFS" Version="2.4.4" />
+  </ItemGroup>
+
+</Project>
