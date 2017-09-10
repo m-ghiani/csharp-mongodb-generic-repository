@@ -24,7 +24,7 @@ public sealed class PeopleRepositoryAsync:GenericRepositoryAsync<Person, ObjectI
     }
 }
 ```
-
+"people" is collection name.
 then you can use repository:
 
 ```
