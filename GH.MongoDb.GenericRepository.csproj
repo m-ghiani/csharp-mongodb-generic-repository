@@ -2,17 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <Description>Generic repository pattern for mongodb. This package contains abtract classes to implement generic repositori pattern</Description>
+    <Description></Description>
     <Copyright />
-    <Authors>Massimo Ghiani</Authors>
+    <Authors></Authors>
     <Company />
-    <Product>MongoDb Generic Repository</Product>
-    <RepositoryUrl>https://github.com/m-ghiani/csharp-mongodb-generic-repository</RepositoryUrl>
-    <RepositoryType>Github</RepositoryType>
-    <PackageTags>MongoDb, Repository pattern</PackageTags>
+    <Product></Product>
+    <RepositoryUrl></RepositoryUrl>
+    <RepositoryType></RepositoryType>
+    <PackageTags></PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.1.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.0</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageId />
   </PropertyGroup>
 
   <ItemGroup>
