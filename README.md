@@ -24,7 +24,7 @@ public sealed class PeopleRepositoryAsync:GenericRepositoryAsync<Person, ObjectI
     }
 }
 ```
-
+"people" is collection name.
 then you can use repository:
 
 ```
@@ -41,6 +41,5 @@ and so on..
 ## Installation
 
 by NUGET
-Install-Package GH.MongoDb.GenericRepository -Version 1.0.0
-
+Install-Package GH.MongoDb.GenericRepository
 
