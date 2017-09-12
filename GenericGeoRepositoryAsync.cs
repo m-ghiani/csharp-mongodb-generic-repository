@@ -9,7 +9,7 @@ using MongoDB.Driver.GeoJsonObjectModel;
 
 namespace GH.MongoDb.GenericRepository
 {
-    public abstract class GenericGeoRepositoryAsync<T, TKey> : GenericRepositoryAsync<T, TKey>,
+    public abstract class GenericGeoRepositoryAsync<T, TKey> : GenericRepositoryAsync<T, TKey>, 
         IGenericGeoRepositoryAsync<T, TKey> where TKey : IEquatable<TKey> where T : IDocument<TKey>, ILocationDocument, new()
     {
         protected GenericGeoRepositoryAsync(IMongoDbConnector connector, string collectionName) : base(connector, collectionName)

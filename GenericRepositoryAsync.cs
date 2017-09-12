@@ -55,23 +55,20 @@ namespace GH.MongoDb.GenericRepository
         public virtual async Task<IEnumerable<T>> Get(IEnumerable<SortingField> sortings, CancellationToken token) => (IEnumerable<T>)await GetCollection(null, null, sortings, null, token);
         public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, object>> projection, CancellationToken token) => (IEnumerable<T>)await GetCollection(null, null, null, projection, token);
         public virtual async Task<IEnumerable<T>> Get(IEnumerable<SortingField> sortings, Expression<Func<T, object>> projection, CancellationToken token) => (IEnumerable<T>)await GetCollection(null, null, sortings, projection, token);
-
         public virtual async Task<T> Get(TKey id, CancellationToken token)
         {
             var filter = Builders<IDocument<TKey>>.Filter.Eq("_id", id);
             return await Collection.Find(e => filter.Inject()).SingleAsync(token);
         }
-
         public virtual async Task Update(T entity, CancellationToken token) => await Collection.ReplaceOneAsync(_ => Equals(_.Id, entity.Id), entity, cancellationToken: token);
-
         public virtual async Task Update(TKey id, T entity, CancellationToken token) => await Collection.ReplaceOneAsync(_ => Equals(_.Id, id), entity, cancellationToken: token);
-
         public virtual async Task Update(TKey id, string fieldName, object fieldValue, CancellationToken token)
         {
             var filter = Builders<T>.Filter.Eq(_ => Equals(_.Id, id), true);
             var update = Builders<T>.Update.Set(fieldName, fieldValue);
             await Collection.UpdateOneAsync(filter, update, cancellationToken: token);
         }
+
 
 
         protected virtual async Task<IEnumerable<object>> GetCollection(Expression<Func<T, bool>> filter,
