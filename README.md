@@ -9,7 +9,7 @@ It contains abstract classes for __CRUD__ operations.
 
 You must create classes derived from IDocument and the repositories derived from GenericRepositoryAsync or GenericBucketRepositoryAsync or GenericGeoRepositoryAsync:
 
-``` 
+```cs
 public class Person: IDocument<ObjectId>
     {
 	    public ObjectId Id {get; set;}
