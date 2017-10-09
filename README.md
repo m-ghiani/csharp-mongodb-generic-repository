@@ -41,5 +41,6 @@ and so on..
 ## Installation
 
 by NUGET
+
 Install-Package GH.MongoDb.GenericRepository
 
