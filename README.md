@@ -33,7 +33,7 @@ var myRepo = new PeopleRepositoryAsync(myConnector)
 
 myRepo.Get() //return all people in my collection 
 myRepo.Get(myID) //return person with myID as id
-myRepo.Get(p=> p.FirstName == "John") //return all people all people who have a name john
+myRepo.Get(p=> p.FirstName == "John") //return all people who have name john
 ```
 
 and so on..
