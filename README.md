@@ -23,11 +23,11 @@ public sealed class PeopleRepositoryAsync:GenericRepositoryAsync<Person, ObjectI
     {
     }
 }
-```cs
+```
 "people" is collection name.
 then you can use repository:
 
-```
+```cs
 var myConnector = new MongoDbConnector("localhost", "mydatabase")
 var myRepo = new PeopleRepositoryAsync(myConnector)
 
