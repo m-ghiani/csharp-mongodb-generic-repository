@@ -356,7 +356,7 @@ namespace GH.MongoDb.GenericRepository
                 {
                     collection.Project(projection);
                 }
-                if (paging.IsNull) return (IEnumerable<object>) await collection.ToListAsync(token);
+                if (paging == null) return (IEnumerable<object>) await collection.ToListAsync(CancellationToken.None);
                 if (paging.Skip != null) collection = collection.Skip(paging.Skip);
                 if (paging.Limit != null) collection = collection.Limit(paging.Limit);
 

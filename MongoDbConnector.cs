@@ -111,7 +111,7 @@ namespace GH.MongoDb.GenericRepository
         private bool InitConnector(string dbServer, string dbName, string username, string password)
         {
             MongoClient client;
-            if (dbServer.Contains("/"))
+            if (dbServer.Contains("mongodb://"))
             {
                 client = new MongoClient(new MongoUrl(dbServer));
             }
