@@ -1,4 +1,4 @@
-# Generic MongoDb Repository
+# Generic MongoDb Repository .Net Core 2.0
 
 ## Synopsis
 
