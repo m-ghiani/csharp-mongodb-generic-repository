@@ -17,7 +17,7 @@ namespace GH.MongoDb.GenericRepository
         }
 
 
-        public async Task<IEnumerable<T>> Get(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, int? skip, int? limit, CancellationToken token)
+        public async Task<IEnumerable<T>> Get(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, int? skip, int? limit, CancellationToken token=default(CancellationToken))
         {
             if(!CollectionExist)return new List<T>();
             FilterDefinition<T> query = null;
@@ -32,7 +32,7 @@ namespace GH.MongoDb.GenericRepository
 
         }
 
-        public async Task<long> Count(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, CancellationToken token)
+        public async Task<long> Count(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, CancellationToken token=default(CancellationToken))
         {
             if (!CollectionExist) return 0;
             FilterDefinition<T> query = null;

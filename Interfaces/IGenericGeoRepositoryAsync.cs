@@ -10,7 +10,7 @@ namespace GH.MongoDb.GenericRepository.Interfaces
         where T : IDocument<TKey>, ILocationDocument, new()
         where TKey : IEquatable<TKey>
     {
-        Task<long> Count(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, CancellationToken token);
-        Task<IEnumerable<T>> Get(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, int? skip, int? limit, CancellationToken token);
+        Task<long> Count(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, CancellationToken token=default(CancellationToken));
+        Task<IEnumerable<T>> Get(double latitude, double longitude, double distance, Expression<Func<T, bool>> filter, int? skip, int? limit, CancellationToken token=default(CancellationToken));
     }
 }

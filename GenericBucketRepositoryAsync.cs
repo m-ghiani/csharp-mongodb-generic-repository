@@ -16,22 +16,22 @@ namespace GH.MongoDb.GenericRepository
             _bucket = Connector.GetBucket(collectionName);
 
         }
-        public async Task<ObjectId> UploadFile(string fileName, byte[] source, GridFSUploadOptions options, CancellationToken token)
+        public async Task<ObjectId> UploadFile(string fileName, byte[] source, GridFSUploadOptions options, CancellationToken token=default(CancellationToken))
         {
             if (_bucket == null) return new ObjectId();
             return await _bucket.UploadFromBytesAsync(fileName, source, options, token);
         }
-        public async Task<ObjectId> UploadFile(string fileName, byte[] source, CancellationToken token)
+        public async Task<ObjectId> UploadFile(string fileName, byte[] source, CancellationToken token=default(CancellationToken))
         {
             if (_bucket == null) return new ObjectId();
             return await _bucket.UploadFromBytesAsync(fileName, source, cancellationToken: token);
         }
-        public async Task<byte[]> DownloadFile(ObjectId id, CancellationToken token)
+        public async Task<byte[]> DownloadFile(ObjectId id, CancellationToken token=default(CancellationToken))
         {
             if (_bucket == null) return null;
             return await _bucket.DownloadAsBytesAsync(id, cancellationToken: token);
         }
-        public async Task<GridFSFileInfo> GetFileInfo(string fileName, CancellationToken token)
+        public async Task<GridFSFileInfo> GetFileInfo(string fileName, CancellationToken token=default(CancellationToken))
         {
             if (_bucket == null) return null;
             var filter = Builders<GridFSFileInfo>.Filter.Eq(x => x.Filename, fileName);
@@ -43,12 +43,12 @@ namespace GH.MongoDb.GenericRepository
             };
             return await _bucket.Find(filter, options).FirstAsync(token);
         }
-        public async Task DeleteFile(ObjectId id, CancellationToken token)
+        public async Task DeleteFile(ObjectId id, CancellationToken token=default(CancellationToken))
         {
             if (_bucket == null) return;
             await _bucket.DeleteAsync(id, token);
         }
-        public async Task RenameFile(ObjectId id, string newFileName, CancellationToken token)
+        public async Task RenameFile(ObjectId id, string newFileName, CancellationToken token=default(CancellationToken))
         {
             if (_bucket == null) return;
             await _bucket.RenameAsync(id, newFileName, token);

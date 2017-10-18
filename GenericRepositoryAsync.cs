@@ -42,7 +42,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="filter">lambda expression filter</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns></returns>
-        public virtual async Task<long> Count(Expression<Func<T, bool>> filter, CancellationToken token) => CollectionExist ? await Collection.CountAsync(filter, cancellationToken: token):0;
+        public virtual async Task<long> Count(Expression<Func<T, bool>> filter, CancellationToken token=default(CancellationToken)) => CollectionExist ? await Collection.CountAsync(filter, cancellationToken: token):0;
 
         /// <summary>
         /// Add entity to collection
@@ -50,7 +50,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="entity">document to add</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns></returns>
-        public virtual async Task Add(T entity, CancellationToken token) => await Collection.InsertOneAsync(entity, new InsertOneOptions() { BypassDocumentValidation = false }, token);
+        public virtual async Task Add(T entity, CancellationToken token=default(CancellationToken)) => await Collection.InsertOneAsync(entity, new InsertOneOptions() { BypassDocumentValidation = false }, token);
  
         /// <summary>
         /// Add entity to collection
@@ -58,7 +58,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="entities">list of documents to add</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns></returns>
-        public virtual async Task Add(List<T> entities, CancellationToken token) => await Collection.InsertManyAsync(entities, new InsertManyOptions() { BypassDocumentValidation = false }, token);
+        public virtual async Task Add(List<T> entities, CancellationToken token=default(CancellationToken)) => await Collection.InsertManyAsync(entities, new InsertManyOptions() { BypassDocumentValidation = false }, token);
 
         /// <summary>
         /// Add entity to collection
@@ -66,7 +66,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="id">id of document to remove</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns></returns>
-        public virtual async Task Delete(TKey id, CancellationToken token)
+        public virtual async Task Delete(TKey id, CancellationToken token=default(CancellationToken))
         {
             if (CollectionExist)
                 await Collection.FindOneAndDeleteAsync(Builders<T>.Filter.Eq(e => e.Id, id),
@@ -90,7 +90,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="filter">lambda expression filter</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns></returns>
-        public virtual async Task<bool> Exist(Expression<Func<T, bool>> filter, CancellationToken token) => CollectionExist && await Collection.Find(filter).AnyAsync(token);
+        public virtual async Task<bool> Exist(Expression<Func<T, bool>> filter, CancellationToken token=default(CancellationToken)) => CollectionExist && await Collection.Find(filter).AnyAsync(token);
         
         /// <summary>
         /// Check if collection exists
@@ -112,7 +112,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="limit">limit number of returned documents</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(int? limit, CancellationToken token) => (IEnumerable<T>)await GetCollection(null, new PagingSettings(null, limit), null, null, token);
+        public virtual async Task<IEnumerable<T>> Get(int? limit, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(null, new PagingSettings(null, limit), null, null, token);
         
         /// <summary>
         /// Get collection's documents
@@ -120,7 +120,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="filter">lambda expression filter</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, CancellationToken token) => (IEnumerable<T>) await GetCollection(filter,null,null,null,token);
+        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>) await GetCollection(filter,null,null,null,token);
         
         /// <summary>
         /// Get collection's documents
@@ -129,7 +129,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="limit">limit number of returned documents</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, int? limit, CancellationToken token) => (IEnumerable<T>) await GetCollection(filter, new PagingSettings(null,limit), null, null, token);
+        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, int? limit, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>) await GetCollection(filter, new PagingSettings(null,limit), null, null, token);
         
         /// <summary>
         /// Get collection's documents
@@ -139,7 +139,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="limit">limit number of returned documents</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, int? skip, int? limit, CancellationToken token) => (IEnumerable<T>) await GetCollection(filter, new PagingSettings(skip, limit), null, null, token);
+        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, int? skip, int? limit, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>) await GetCollection(filter, new PagingSettings(skip, limit), null, null, token);
         
         /// <summary>
         /// Get collection's documents
@@ -148,7 +148,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="settings">Istance of PagingSettings</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, PagingSettings settings, CancellationToken token) => (IEnumerable<T>)await GetCollection(filter, settings, null, null, token);
+        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, PagingSettings settings, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(filter, settings, null, null, token);
         
         /// <summary>
         /// Get collection's documents
@@ -158,7 +158,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="sortings">list of sortingField</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, PagingSettings settings, IEnumerable<SortingField> sortings, CancellationToken token) => (IEnumerable<T>)await GetCollection(filter, settings,sortings, null, token);
+        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, PagingSettings settings, IEnumerable<SortingField> sortings, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(filter, settings,sortings, null, token);
         
         /// <summary>
         /// Get collection's documents
@@ -168,7 +168,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="projection">defines a projection document to specify or restrict fields to return</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, PagingSettings settings, Expression<Func<T, object>> projection, CancellationToken token) => (IEnumerable<T>)await GetCollection(filter, settings, null, projection, token);
+        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, PagingSettings settings, Expression<Func<T, object>> projection, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(filter, settings, null, projection, token);
 
         /// <summary>
         /// Get collection's documents
@@ -179,7 +179,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="projection">defines a projection document to specify or restrict fields to return</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, PagingSettings settings, IEnumerable<SortingField> sortings, Expression<Func<T,object>> projection, CancellationToken token) => (IEnumerable<T>)await GetCollection(filter, settings, sortings, projection, token);
+        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, PagingSettings settings, IEnumerable<SortingField> sortings, Expression<Func<T,object>> projection, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(filter, settings, sortings, projection, token);
         
         /// <summary>
         /// Get collection's documents
@@ -188,7 +188,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="projection">defines a projection document to specify or restrict fields to return</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, Expression<Func<T, object>> projection, CancellationToken token) => (IEnumerable<T>)await GetCollection(filter, null, null, projection, token);
+        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, Expression<Func<T, object>> projection, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(filter, null, null, projection, token);
         
         /// <summary>
         /// Get collection's documents
@@ -197,7 +197,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="sortings">list of sortingField</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, IEnumerable<SortingField> sortings, CancellationToken token) => (IEnumerable<T>)await GetCollection(filter, null, sortings, null, token);
+        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, IEnumerable<SortingField> sortings, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(filter, null, sortings, null, token);
         
         /// <summary>
         /// Get collection's documents
@@ -207,7 +207,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="projection">defines a projection document to specify or restrict fields to return</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, IEnumerable<SortingField> sortings, Expression<Func<T, object>> projection, CancellationToken token) => (IEnumerable<T>)await GetCollection(filter, null, sortings, projection, token);
+        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, IEnumerable<SortingField> sortings, Expression<Func<T, object>> projection, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(filter, null, sortings, projection, token);
 
         /// <summary>
         /// Get collection's documents
@@ -216,7 +216,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="limit">limit number of returned documents</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(int? skip, int? limit, CancellationToken token) => (IEnumerable<T>)await GetCollection(null, new PagingSettings(skip, limit), null, null, token);
+        public virtual async Task<IEnumerable<T>> Get(int? skip, int? limit, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(null, new PagingSettings(skip, limit), null, null, token);
         
         /// <summary>
         /// Get collection's documents
@@ -224,7 +224,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="settings">Istance of PagingSettings</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(PagingSettings settings, CancellationToken token) => (IEnumerable<T>)await GetCollection(null, settings, null, null, token);
+        public virtual async Task<IEnumerable<T>> Get(PagingSettings settings, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(null, settings, null, null, token);
         
         /// <summary>
         /// Get collection's documents
@@ -233,7 +233,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="sortings">list of sortingField</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(PagingSettings settings, IEnumerable<SortingField> sortings, CancellationToken token) => (IEnumerable<T>)await GetCollection(null, settings, sortings, null, token);
+        public virtual async Task<IEnumerable<T>> Get(PagingSettings settings, IEnumerable<SortingField> sortings, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(null, settings, sortings, null, token);
         
         /// <summary>
         /// Get collection's documents
@@ -242,7 +242,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="projection">defines a projection document to specify or restrict fields to return</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(PagingSettings settings, Expression<Func<T, object>> projection, CancellationToken token) => (IEnumerable<T>)await GetCollection(null, settings, null, projection, token);
+        public virtual async Task<IEnumerable<T>> Get(PagingSettings settings, Expression<Func<T, object>> projection, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(null, settings, null, projection, token);
         
         /// <summary>
         /// Get collection's documents
@@ -252,7 +252,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="projection">defines a projection document to specify or restrict fields to return</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(PagingSettings settings, IEnumerable<SortingField> sortings, Expression<Func<T, object>> projection, CancellationToken token) => (IEnumerable<T>)await GetCollection(null, settings, sortings, projection, token);
+        public virtual async Task<IEnumerable<T>> Get(PagingSettings settings, IEnumerable<SortingField> sortings, Expression<Func<T, object>> projection, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(null, settings, sortings, projection, token);
         
         /// <summary>
         /// Get collection's documents
@@ -260,7 +260,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="sortings">list of sortingField</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(IEnumerable<SortingField> sortings, CancellationToken token) => (IEnumerable<T>)await GetCollection(null, null, sortings, null, token);
+        public virtual async Task<IEnumerable<T>> Get(IEnumerable<SortingField> sortings, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(null, null, sortings, null, token);
         
         /// <summary>
         /// Get collection's documents
@@ -268,7 +268,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="projection">defines a projection document to specify or restrict fields to return</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, object>> projection, CancellationToken token) => (IEnumerable<T>)await GetCollection(null, null, null, projection, token);
+        public virtual async Task<IEnumerable<T>> Get(Expression<Func<T, object>> projection, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(null, null, null, projection, token);
         
         /// <summary>
         /// Get collection's documents
@@ -277,7 +277,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="projection">defines a projection document to specify or restrict fields to return</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(IEnumerable<SortingField> sortings, Expression<Func<T, object>> projection, CancellationToken token) => (IEnumerable<T>)await GetCollection(null, null, sortings, projection, token);
+        public virtual async Task<IEnumerable<T>> Get(IEnumerable<SortingField> sortings, Expression<Func<T, object>> projection, CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(null, null, sortings, projection, token);
 
         /// <summary>
         /// Get document
@@ -285,7 +285,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="id">id of document to retrieve</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return document</returns>
-        public virtual async Task<T> Get(TKey id, CancellationToken token)
+        public virtual async Task<T> Get(TKey id, CancellationToken token=default(CancellationToken))
         {
             if(!CollectionExist) return new T();
             var filter = Builders<IDocument<TKey>>.Filter.Eq("_id", id);
@@ -298,7 +298,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="entity">document to update</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns></returns>
-        public virtual async Task Update(T entity, CancellationToken token)
+        public virtual async Task Update(T entity, CancellationToken token=default(CancellationToken))
         {
             if(!CollectionExist) return;
             await Collection.ReplaceOneAsync(_ => Equals(_.Id, entity.Id), entity, cancellationToken: token);
@@ -311,7 +311,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="entity">new document</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns></returns>
-        public virtual async Task Update(TKey id, T entity, CancellationToken token)
+        public virtual async Task Update(TKey id, T entity, CancellationToken token=default(CancellationToken))
         {
             if (!CollectionExist) return;
             await Collection.ReplaceOneAsync(_ => Equals(_.Id, id), entity, cancellationToken: token);
@@ -325,7 +325,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="fieldValue">new field value</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns></returns>
-        public virtual async Task Update(TKey id, string fieldName, object fieldValue, CancellationToken token)
+        public virtual async Task Update(TKey id, string fieldName, object fieldValue, CancellationToken token=default(CancellationToken))
         {
             var filter = Builders<T>.Filter.Eq(_ => Equals(_.Id, id), true);
             var update = Builders<T>.Update.Set(fieldName, fieldValue);
@@ -335,7 +335,7 @@ namespace GH.MongoDb.GenericRepository
 
 
         protected virtual async Task<IEnumerable<object>> GetCollection(Expression<Func<T, bool>> filter,
-            PagingSettings paging, IEnumerable<SortingField> sortings, Expression<Func<T, object>> projection, CancellationToken token)
+            PagingSettings paging, IEnumerable<SortingField> sortings, Expression<Func<T, object>> projection, CancellationToken token=default(CancellationToken))
         {
             if(!CollectionExist) return new List<object>();
             try
