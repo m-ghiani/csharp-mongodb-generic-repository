@@ -78,7 +78,7 @@ namespace GH.MongoDb.GenericRepository
         /// </summary>
         /// <param name="token">cancellation token async support</param>
         /// <returns></returns>
-        public virtual async Task DropCollection(CancellationToken token)
+        public virtual async Task DropCollection(CancellationToken token=default(CancellationToken))
         {
             if(CollectionExist)
             await Connector.Db.DropCollectionAsync(CollectionName, token);
@@ -97,14 +97,14 @@ namespace GH.MongoDb.GenericRepository
         /// </summary>
         /// <param name="token">cancellation token async support</param>
         /// <returns></returns>
-        public virtual async Task<bool> ExistCollection(CancellationToken token) => CollectionExist;
+        public virtual async Task<bool> ExistCollection(CancellationToken token=default(CancellationToken)) => CollectionExist;
         
         /// <summary>
         /// Get all collection's documents
         /// </summary>
         /// <param name="token">cancellation token async support</param>
         /// <returns>Return list of documents</returns>
-        public virtual async Task<IEnumerable<T>> Get(CancellationToken token) => (IEnumerable<T>)await GetCollection(null, null, null, null, token);
+        public virtual async Task<IEnumerable<T>> Get(CancellationToken token=default(CancellationToken)) => (IEnumerable<T>)await GetCollection(null, null, null, null, token);
         
         /// <summary>
         /// Get collection's documents

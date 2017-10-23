@@ -13,10 +13,10 @@ namespace GH.MongoDb.GenericRepository.Interfaces
         Task Add(List<T> entities, CancellationToken token=default(CancellationToken));
         Task<long> Count(Expression<Func<T, bool>> filter, CancellationToken token=default(CancellationToken));
         Task Delete(TKey id, CancellationToken token=default(CancellationToken));
-        Task DropCollection(CancellationToken token);
+        Task DropCollection(CancellationToken token=default(CancellationToken));
         Task<bool> Exist(Expression<Func<T, bool>> filter, CancellationToken token=default(CancellationToken));
-        Task<bool> ExistCollection(CancellationToken token);
-        Task<IEnumerable<T>> Get(CancellationToken token);
+        Task<bool> ExistCollection(CancellationToken token=default(CancellationToken));
+        Task<IEnumerable<T>> Get(CancellationToken token=default(CancellationToken));
         Task<IEnumerable<T>> Get(int? skip, CancellationToken token=default(CancellationToken));
         Task<IEnumerable<T>> Get(int? skip, int? limit, CancellationToken token=default(CancellationToken));
         Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter, CancellationToken token=default(CancellationToken));
