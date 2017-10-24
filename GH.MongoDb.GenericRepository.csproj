@@ -11,12 +11,13 @@
     <RepositoryType></RepositoryType>
     <PackageTags>MongoDb, Repository</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>2.0.4.0</AssemblyVersion>
-    <FileVersion>2.0.4.0</FileVersion>
-    <Version>2.0.4</Version>
+    <AssemblyVersion>2.0.6.0</AssemblyVersion>
+    <FileVersion>2.0.6.0</FileVersion>
+    <Version>2.0.6</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/m-ghiani/csharp-mongodb-generic-repository</PackageProjectUrl>
     <PackageId />
+    <PackageReleaseNotes>change update method</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

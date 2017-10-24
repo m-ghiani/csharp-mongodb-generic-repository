@@ -50,7 +50,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="entity">document to add</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns></returns>
-        public virtual async Task Add(T entity, CancellationToken token=default(CancellationToken)) => await Collection.InsertOneAsync(entity, new InsertOneOptions() { BypassDocumentValidation = false }, token);
+        public virtual async Task Add(T entity, CancellationToken token=default(CancellationToken)) => await Collection.InsertOneAsync(entity, new InsertOneOptions() { BypassDocumentValidation = true }, token);
  
         /// <summary>
         /// Add entity to collection
@@ -58,7 +58,7 @@ namespace GH.MongoDb.GenericRepository
         /// <param name="entities">list of documents to add</param>
         /// <param name="token">cancellation token async support</param>
         /// <returns></returns>
-        public virtual async Task Add(List<T> entities, CancellationToken token=default(CancellationToken)) => await Collection.InsertManyAsync(entities, new InsertManyOptions() { BypassDocumentValidation = false }, token);
+        public virtual async Task Add(List<T> entities, CancellationToken token=default(CancellationToken)) => await Collection.InsertManyAsync(entities, new InsertManyOptions() { BypassDocumentValidation = true }, token);
 
         /// <summary>
         /// Add entity to collection
@@ -301,7 +301,8 @@ namespace GH.MongoDb.GenericRepository
         public virtual async Task Update(T entity, CancellationToken token=default(CancellationToken))
         {
             if(!CollectionExist) return;
-            await Collection.ReplaceOneAsync(_ => Equals(_.Id, entity.Id), entity, cancellationToken: token);
+            var filter = Builders<T>.Filter.Eq(_ => Equals(_.Id, entity.Id), true);
+            await Collection.ReplaceOneAsync(filter, entity, new UpdateOptions() { BypassDocumentValidation = true }, token);
         }
 
         /// <summary>
@@ -314,7 +315,8 @@ namespace GH.MongoDb.GenericRepository
         public virtual async Task Update(TKey id, T entity, CancellationToken token=default(CancellationToken))
         {
             if (!CollectionExist) return;
-            await Collection.ReplaceOneAsync(_ => Equals(_.Id, id), entity, cancellationToken: token);
+            var filter = Builders<T>.Filter.Eq(_ => Equals(_.Id, id), true);
+            await Collection.ReplaceOneAsync(filter,entity,new UpdateOptions(){BypassDocumentValidation = true}, token);
         }
 
         /// <summary>
