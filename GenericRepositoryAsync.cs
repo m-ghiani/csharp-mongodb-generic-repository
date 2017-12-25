@@ -24,7 +24,7 @@ namespace GH.MongoDb.GenericRepository
             CollectionExist = Collection != null;
         }
 
-        protected readonly string CollectionName;
+        public readonly string CollectionName;
         protected IMongoCollection<T> Collection { get; set; }
 
         protected bool CollectionExist;

@@ -24,55 +24,7 @@ namespace GH.MongoDb.GenericRepository
         /// </summary>
         /// <param name="settings">connection setting class instance</param>
         public MongoDbConnector(ConnectionSettings settings) => IsConnected = InitConnector(settings);
-        /// <summary>
-        /// Use mongodb connection string to connect with database
-        /// <see cref="http://docs.mongodb.com/manual/reference/connection-string/"/>
-        /// </summary>
-        /// <param name="connectionString">the connection string for the database</param>
-        [Obsolete("Use MongoDbConnector(ConnectionSettings settings)")]
-        public MongoDbConnector(string connectionString) => IsConnected = InitConnector(connectionString, string.Empty, string.Empty, string.Empty);
 
-        /// <summary>
-        /// Use mongodb connection string to connect with database
-        /// <see cref="http://docs.mongodb.com/manual/reference/connection-string/"/>
-        /// </summary>
-        /// <param name="connectionString">the connection string for the database</param>
-        /// <param name="protocols">ssl protocols</param>
-        [Obsolete("Use MongoDbConnector(ConnectionSettings settings)")]
-        public MongoDbConnector(string connectionString, SslProtocols protocols) => IsConnected = InitConnector(connectionString, string.Empty, string.Empty, string.Empty, protocols);
-
-        /// <summary>
-        /// Use server name and dbname to connect with database eg: dbServer = "localhost", dbName = "databasename".
-        /// Use this contructor for databases whit no credentials
-        /// </summary>
-        /// <param name="dbServer">server name</param>
-        /// <param name="dbName">database name</param>
-        [Obsolete("Use MongoDbConnector(ConnectionSettings settings)")]
-        public MongoDbConnector(string dbServer, string dbName) => IsConnected = InitConnector(dbServer, dbName, string.Empty, string.Empty);
-
-        /// <summary>
-        /// Use server name and dbname to connect with database eg: dbServer = "localhost", dbName = "databasename".
-        /// Use this contructor for databases whit credentials
-        /// </summary>
-        /// <param name="dbServer">server name</param>
-        /// <param name="dbName">database name</param>
-        /// <param name="username">username</param>
-        /// <param name="password">password</param>
-        [Obsolete("Use MongoDbConnector(ConnectionSettings settings)")]
-        public MongoDbConnector(string dbServer, string dbName, string username, string password) => IsConnected = InitConnector(dbServer, dbName, username, password);
-
-        /// <summary>
-        /// Use server name and dbname to connect with database eg: dbServer = "localhost", dbName = "databasename".
-        /// Use this contructor for databases whit credentials
-        /// </summary>
-        /// <param name="dbServer">server name</param>
-        /// <param name="dbName">database name</param>
-        /// <param name="username">username</param>
-        /// <param name="password">password</param>
-        /// <param name="protocols">ssl protocols</param>
-        [Obsolete("Use MongoDbConnector(ConnectionSettings settings)")]
-        public MongoDbConnector(string dbServer, string dbName, string username, string password,SslProtocols protocols) => IsConnected = InitConnector(dbServer, dbName, username, password,protocols);
-        
         /// <summary>
         /// Represents the database object
         /// </summary>
