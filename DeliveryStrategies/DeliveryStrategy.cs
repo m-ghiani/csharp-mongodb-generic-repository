@@ -9,10 +9,10 @@ namespace GH.MongoDb.GenericRepository.DeliveryStrategies
 {
     public class DeliveryStrategy
     {
-        public IEnumerable<string> IncludedFields { get; set; } = new List<string>();
+        public List<string> IncludedFields { get; set; } = new List<string>();
         public bool IncludeId { get; set; } = true;
         public PagingSettings PagingSettings { get; set; }
-        public IEnumerable<SortingField> SortingSettings { get; set; }
+        public List<SortingField> SortingSettings { get; set; }
         public string ProjectionString
         {
             get
