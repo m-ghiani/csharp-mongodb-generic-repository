@@ -25,9 +25,9 @@ namespace GH.MongoDb.GenericRepository
         }
 
         public readonly string CollectionName;
-        protected IMongoCollection<T> Collection { get; set; }
+        public IMongoCollection<T> Collection { get; set; }
 
-        protected bool CollectionExist;
+        public bool CollectionExist;
 
         /// <summary>
         /// Get the connector to database
